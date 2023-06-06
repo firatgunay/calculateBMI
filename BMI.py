@@ -1,13 +1,13 @@
-import tkinter
+from tkinter import *
 
-window = tkinter.Tk()
-window.title("BMI Calculator")
-window.config(padx=45, pady=45)
+window = Tk()
+window.title("tkinter")
+window.minsize(width=500, height=500)
+window.config(padx=20, pady=20)
 
-
-def calculate_bmi():
-    height = height_input.get()
-    weight = weight_input.get()
+def calculateBMI():
+    height = entry_height.get()
+    weight = entry_weight.get()
     if weight == "" or height == "":
         result_label.config(text="Enter both weight and height!")
     else:
@@ -18,20 +18,25 @@ def calculate_bmi():
         except:
             result_label.config(text="Enter a valid number!")
 
+weight_label = Label(text="enter your weight (kg)")
+weight_label.config(padx=10, pady=10)
+weight_label.pack()
 
-weight_input_label = tkinter.Label(text="Enter Your Weight (kg)")
-weight_input_label.pack()
-weight_input = tkinter.Entry(width=10)
-weight_input.pack()
-height_input_label = tkinter.Label(text="Enter Your Height (cm)")
-height_input_label.pack()
-height_input = tkinter.Entry(width=10)
-height_input.pack()
-calculate_button = tkinter.Button(text="Calculate", command=calculate_bmi)
+entry_weight = Entry()
+entry_weight.pack()
+
+height_label = Label(text="enter your height (cm)")
+height_label.config(padx=10, pady=10)
+height_label.pack()
+
+entry_height = Entry()
+entry_height.pack()
+
+calculate_button = Button(text="calculate BMI", command= calculateBMI)
 calculate_button.pack()
-result_label = tkinter.Label()
-result_label.pack()
 
+result_label = Label()
+result_label.pack()
 
 def write_result(bmi):
     result_string = f"Your BMI is {round(bmi, 2)}. You are "
@@ -44,6 +49,5 @@ def write_result(bmi):
     else:
         result_string += "obese"
     return result_string
-
 
 window.mainloop()
